@@ -23,7 +23,6 @@ from utils.enter_password_dialog import EnterPasswordDialog
 
 DB_FILE = "db.sqlite"
 ICON_PNG = "assets/icon.png"
-ICON_ICO = "assets/icon.ico"
 VAULT_IMG_PATH = "assets/lock.png"
 DEFAULT_WINDOW_WIDTH = 1100
 DEFAULT_WINDOW_HEIGHT = 580
