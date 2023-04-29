@@ -13,7 +13,7 @@
 ░                 ░ ░                           ░                          
 """
 
-from PIL import Image
+from PIL.Image import open
 import customtkinter as ctk
 from tkinter import PhotoImage
 from utils.misc import setup_db, get_data
@@ -118,8 +118,8 @@ class Cryptical(ctk.CTk):
 
             # temporary vault image
             tmpv_img = ctk.CTkImage(
-                light_image=Image.open(VAULT_IMG_PATH),
-                dark_image=Image.open(VAULT_IMG_PATH),
+                light_image=open(VAULT_IMG_PATH),
+                dark_image=open(VAULT_IMG_PATH),
                 size=(50, 60),
             )
             tmpv_img_frame = ctk.CTkLabel(tmpv_frame, text="", image=tmpv_img)
@@ -204,6 +204,9 @@ class Cryptical(ctk.CTk):
             self.enter_pwd_dialog.focus()
 
 
-if __name__ == "__main__":
+def main():
     app = Cryptical()
     app.mainloop()
+
+
+main()
