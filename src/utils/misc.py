@@ -119,7 +119,7 @@ def setup_db(db_file: str) -> None:
                          salt TEXT NOT NULL);"""
         )
 
-        # Create the "passwords" table if it does not already exist
+        # Create the "entries" table if it does not already exist
         # pid: password id; vid: vault id
         # site: site name; esp: encrypted site password
         cursor.execute(
