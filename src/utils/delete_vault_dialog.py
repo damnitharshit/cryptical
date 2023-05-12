@@ -70,6 +70,7 @@ class DeleteVaultDialog(ctk.CTkToplevel):
         # Create the Select Vault option menu and Enter Vault Password entry
         self.select_vault_optionmenu = create_frame(self, "Select Vault:")
         self.enter_mp_entry = create_frame(self, "Enter Vault Password:", "●")
+        self.enter_mp_entry.focus_set()
 
         # Create the Delete Vault and Cancel buttons
         self.buttons_frame = ctk.CTkFrame(self, fg_color="transparent")

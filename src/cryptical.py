@@ -155,6 +155,9 @@ class Cryptical(ctk.CTk):
             return
 
         # If the dialog does not exist, create a new instance of AddVaultDialog
+        # and kill any instances of other dialogs if they exist
+        self.del_vault_dialog.destroy() if self.del_vault_dialog else None
+        self.enter_pwd_dialog.destroy() if self.enter_pwd_dialog else None
         self.add_vault_dialog = AddVaultDialog(db_file, self)
 
     def init_delete_vault_dialog(self, db_file: str) -> None:
@@ -173,7 +176,10 @@ class Cryptical(ctk.CTk):
             self.del_vault_dialog.focus()
             return
 
-        # If the dialog does not exist, create a new instance of AddVaultDialog
+        # If the dialog does not exist, create a new instance of DeleteVaultDialog
+        # and kill any instances of other dialogs if they exist
+        self.add_vault_dialog.destroy() if self.add_vault_dialog else None
+        self.enter_pwd_dialog.destroy() if self.enter_pwd_dialog else None
         self.del_vault_dialog = DeleteVaultDialog(db_file, self)
 
     def init_enter_pwd_dialog(self, vid: int, db_file: str) -> None:
@@ -197,11 +203,18 @@ class Cryptical(ctk.CTk):
         else:
             raise ValueError(f"No vault found with ID {vid}")
 
-        # Create or focus the Enter Password Dialog
-        if self.enter_pwd_dialog is None or not self.enter_pwd_dialog.winfo_exists():
-            self.enter_pwd_dialog = EnterPasswordDialog(db_file, selected_vault)
-        else:
+        
+        # Check if the EnterPasswordDialog has already been created and exists on the screen
+        if self.enter_pwd_dialog is not None and self.enter_pwd_dialog.winfo_exists():
+            # If it does, give focus to the dialog and return
             self.enter_pwd_dialog.focus()
+            return
+
+        # If the dialog does not exist, create a new instance of EnterPasswordDialog
+        # and kill any instances of other dialogs if they exist
+        self.add_vault_dialog.destroy() if self.add_vault_dialog else None
+        self.del_vault_dialog.destroy() if self.del_vault_dialog else None
+        self.enter_pwd_dialog = EnterPasswordDialog(db_file, selected_vault)
 
 
 def main():

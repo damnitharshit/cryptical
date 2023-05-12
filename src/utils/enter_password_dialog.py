@@ -31,6 +31,7 @@ class EnterPasswordDialog(ctk.CTkToplevel):
 
         self.enter_pwd_entry = ctk.CTkEntry(self.enter_pwd_frame, show="●")
         self.enter_pwd_entry.grid(row=0, column=1, padx=10, sticky="nsew")
+        self.enter_pwd_entry.focus_set()
 
         # Create the "Open Vault" and "Cancel" buttons
         self.buttons_frame = ctk.CTkFrame(self, fg_color="transparent")

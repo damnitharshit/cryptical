@@ -68,6 +68,7 @@ class AddEntryDialog(ctk.CTkToplevel):
         self.sname_frame, self.sname_label, self.sname_entry = create_entry(
             self, "Type Site Name: "
         )
+        self.sname_entry.focus_set()
 
         # For Site Password
         self.spwd_frame, self.spwd_label, self.spwd_entry = create_entry(

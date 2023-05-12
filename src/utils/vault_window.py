@@ -96,7 +96,7 @@ class VaultWindow(ctk.CTkToplevel):
         for i, entry in enumerate(available_entries):
             # Create frame for password entry
             tmpe_frame = ctk.CTkFrame(
-                self.table_frame, fg_color="#212121", corner_radius=0
+                self.table_frame, fg_color="#212121", corner_radius=5
             )
             tmpe_frame.rowconfigure(0, weight=1)
             tmpe_frame.columnconfigure(0, weight=5)
@@ -158,10 +158,14 @@ class VaultWindow(ctk.CTkToplevel):
 
         Returns: None
         """
-        if self.add_entry_dialog is None or not self.add_entry_dialog.winfo_exists():
-            self.add_entry_dialog = AddEntryDialog(db_file, vmp, vname, vid, self)
-        else:
+        # Check if the AddEntryDialog has already been created and exists on the screen
+        if self.add_entry_dialog is not None and self.add_entry_dialog.winfo_exists():
+            # If it does, give focus to the dialog and return
             self.add_entry_dialog.focus()
+            return
+
+        # If the dialog does not exist, create a new instance of AddEntryDialog
+        self.add_entry_dialog = AddEntryDialog(db_file, vmp, vname, vid, self)
 
     def copy_to_clipboard(self, vmp, esp) -> None:
         """Copies a password to the system clipboard.

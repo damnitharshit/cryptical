@@ -64,6 +64,7 @@ class AddVaultDialog(ctk.CTkToplevel):
         self.vname_frame, self.vname_label, self.vname_entry = create_entry(
             self, "Type Vault Name: "
         )
+        self.vname_entry.focus_set()
 
         # For Vault Password
         self.vpwd_frame, self.vpwd_label, self.vpwd_entry = create_entry(
